@@ -1,0 +1,14 @@
+{
+  "extends": "@workspace/configs/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+    ".next/types/**/*.ts"
+  ]
+}
