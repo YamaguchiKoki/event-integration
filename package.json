@@ -10,7 +10,10 @@
   },
   "packageManager": "pnpm@9.15.4",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "turbo run build",
+    "biome:fix": "pnpm -r biome:fix",
+    "biome:format": "pnpm -r biome:format"
   },
   "keywords": [],
   "author": "",
