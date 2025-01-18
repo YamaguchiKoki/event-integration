@@ -1,0 +1,25 @@
+{
+  "name": "compass-integration-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "pnpm": "9.15.4",
+    "npm": "please_use_pnpm_instead",
+    "yarn": "please_use_pnpm_instead"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "volta": {
+    "node": "18.17.0"
+  },
+  "devDependencies": {
+    "biome": "^0.3.3",
+    "turbo": "^2.3.3"
+  }
+}
