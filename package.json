@@ -12,6 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "turbo run build",
+    "dev": "pnpm -r dev",
     "biome:fix": "pnpm -r biome:fix",
     "biome:format": "pnpm -r biome:format"
   },
