@@ -17,12 +17,18 @@ importers:
 
   apps/api:
     dependencies:
+      '@hono/zod-validator':
+        specifier: ^0.4.2
+        version: 0.4.2(hono@4.6.17)(zod@3.24.1)
       '@tidbcloud/serverless':
         specifier: ^0.2.0
         version: 0.2.0
       '@workspace/configs':
         specifier: workspace:^
         version: link:../../packages/configs
+      '@workspace/contract':
+        specifier: workspace:^
+        version: link:../../packages/contract
       drizzle-orm:
         specifier: ^0.38.4
         version: 0.38.4(@tidbcloud/serverless@0.2.0)(@types/react@19.0.7)(mysql2@3.12.0)(react@19.0.0)
@@ -45,6 +51,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.17.12
+      biome:
+        specifier: ^0.3.3
+        version: 0.3.3
       drizzle-kit:
         specifier: ^0.30.2
         version: 0.30.2
@@ -554,6 +563,12 @@ packages:
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
+
+  '@hono/zod-validator@0.4.2':
+    resolution: {integrity: sha512-1rrlBg+EpDPhzOV4hT9pxr5+xDVmKuz6YJl+la7VCwK6ass5ldyKm5fD+umJdV2zhHD6jROoCCv8NbTwyfhT0g==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.19.1
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -2198,6 +2213,11 @@ snapshots:
   '@hono/node-server@1.13.7(hono@4.6.17)':
     dependencies:
       hono: 4.6.17
+
+  '@hono/zod-validator@0.4.2(hono@4.6.17)(zod@3.24.1)':
+    dependencies:
+      hono: 4.6.17
+      zod: 3.24.1
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

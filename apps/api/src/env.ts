@@ -2,6 +2,8 @@ import { z } from "zod";
 
 const commonSchema = z.object({
   NODE_ENV: z.enum(["local", "production"]),
+  FRONTEND_URL: z.string().default("http://localhost:3000"),
+  CONNPASS_API_URL: z.string().default("http://localhost:8787").describe("connpass APIのURL IP制限があるためローカルではモックする"),
 });
 
 const developmentSchema = z.object({

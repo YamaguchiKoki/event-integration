@@ -1,1 +1,1 @@
-export * from './schemas/entities/user';
+export * from './schemas/api/event/fetch';

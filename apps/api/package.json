@@ -7,7 +7,7 @@
     "zip": "zip -j lambda.zip dist/index.js",
     "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name hello",
     "deploy": "run-s build zip update",
-    "biome:format": "biome format --write ./src/**/*.ts",
+    "biome:format": "biome format --write ./src",
     "biome:fix": "biome check --debug --write ./src/**/*.ts",
     "drizzle:generate": "NODE_ENV=local npx drizzle-kit generate",
     "drizzle:migrate": "NODE_ENV=local npx drizzle-kit migrate",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@hono/node-server": "^1.13.7",
     "@types/node": "^20",
+    "biome": "^0.3.3",
     "drizzle-kit": "^0.30.2",
     "esbuild": "^0.21.4",
     "nodemon": "^3.1.9",
@@ -25,8 +26,10 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.4.2",
     "@tidbcloud/serverless": "^0.2.0",
     "@workspace/configs": "workspace:^",
+    "@workspace/contract": "workspace:^",
     "drizzle-orm": "^0.38.4",
     "drizzle-zod": "^0.6.1",
     "hono": "^4.6.17",
