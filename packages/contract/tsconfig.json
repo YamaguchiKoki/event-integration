@@ -1,5 +1,5 @@
 {
-  "extends": "../../packages/configs/tsconfig/shared.json",
+  "extends": "../../packages/configs/tsconfig/contract.json",
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
