@@ -12,19 +12,11 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { EventView } from "@/features/event/types"
 
 const ITEMS_PER_PAGE = 6
 
-type Event = {
-  id: number
-  title: string
-  description: string
-  date: string
-  location: string
-  attendees: number
-}
-
-export default function EventList({ initialEvents }: { initialEvents: Event[] }) {
+export default function EventList({ initialEvents }: { initialEvents: EventView[] }) {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPages = Math.ceil(initialEvents.length / ITEMS_PER_PAGE)
 
@@ -34,7 +26,7 @@ export default function EventList({ initialEvents }: { initialEvents: Event[] })
     <>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {currentEvents.map((event) => (
-          <Card key={event.id}>
+          <Card key={event.eventId}>
             <CardHeader>
               <CardTitle>{event.title}</CardTitle>
               <CardDescription>{event.description}</CardDescription>
@@ -42,15 +34,15 @@ export default function EventList({ initialEvents }: { initialEvents: Event[] })
             <CardContent>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CalendarDays className="h-4 w-4" />
-                <span>{event.date}</span>
+                <span>{event.startedAt}</span>
               </div>
               <div className="mt-2 flex items-center space-x-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                <span>{event.location}</span>
+                <span>{event.place}</span>
               </div>
               <div className="mt-2 flex items-center space-x-2 text-sm text-muted-foreground">
                 <Users className="h-4 w-4" />
-                <span>{event.attendees} attendees</span>
+                <span>{event.accepted} attendees</span>
               </div>
             </CardContent>
             <CardFooter>

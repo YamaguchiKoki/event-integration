@@ -6,5 +6,5 @@ export function getBaseURL() {
 
   return url
     ? `https://${url}`
-    : `http://localhost:${process.env.PORT || 8787}`;
+    : `http://localhost:8787`;
 }

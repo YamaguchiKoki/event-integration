@@ -23,11 +23,11 @@ export default function RootLayout({
       <div className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarTrigger className="absolute left-4 top-4 md:hidden" />
-            {children}
-          </SidebarProvider>
+            <SidebarProvider>
+                <AppSidebar />
+                <SidebarTrigger className="absolute left-4 top-20 " />
+                {children}
+            </SidebarProvider>
         </ThemeProvider>
       </div>
     </>

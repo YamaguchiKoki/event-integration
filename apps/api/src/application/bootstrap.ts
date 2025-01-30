@@ -3,9 +3,7 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { env } from "../env.js";
 import { createContainer } from "./container/injection.js";
-import { registerMockRoutes } from "../adapters/routes/mockRoutes.js";
 import { AppType } from "./type.js";
-import { registerEventRoutes } from "../adapters/routes/eventRoutes.js";
 
 export const bootstrap = () => {
   const app = new Hono<AppType>();
@@ -38,11 +36,6 @@ export const bootstrap = () => {
     c.set('container', container);
     await next();
   });
-
-  // connpass APIなどのモック
-  if (env.NODE_ENV === 'local') {
-    registerMockRoutes(app);
-  }
 
   return app;
 };

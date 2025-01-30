@@ -3,13 +3,14 @@ import { z } from 'zod';
 export const eventSchema = z.object({
   eventId: z.number(),
   title: z.string(),
-  place: z.string(),
-  address: z.string().optional(),
-  startedAt: z.date(),
-  endedAt: z.date(),
   catch: z.string(),
   description: z.string(),
-  participantsCount: z.number(),
+  url: z.string(),
+  startedAt: z.string(),
+  endedAt: z.string(),
+  address: z.string(),
+  place: z.string(),
+  accepted: z.number(),
 });
 
 export type Event = z.infer<typeof eventSchema>;
