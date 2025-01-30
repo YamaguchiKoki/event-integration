@@ -1,66 +1,81 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import { Calendar, Clock, Menu, X } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+import * as React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { GalleryVerticalEnd, Search } from "lucide-react"
 
-type SidebarProps = {
-  onSelectView: (view: 'current' | 'past') => void
-}
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+} from "@/components/ui/sidebar"
 
-export function Sidebar({ onSelectView }: SidebarProps) {
-  const [isOpen, setIsOpen] = useState(false)
+const navItems = [
+  { title: "Introduction", url: "/" },
+  { title: "Getting Started", url: "/getting-started" },
+  { title: "Components", url: "/components" },
+  { title: "API Reference", url: "/api-reference" },
+]
+
+export function AppSidebar() {
+  const pathname = usePathname()
 
   return (
-    <>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="fixed left-4 top-4 z-50 md:hidden"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X /> : <Menu />}
-      </Button>
-      <div
-        className={cn(
-          'fixed inset-y-0 left-0 z-40 w-64 bg-white p-6 shadow-lg transition-transform duration-200 ease-in-out md:translate-x-0',
-          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-        )}
-      >
-        <h2 className="mb-6 text-2xl font-bold">Event Dashboard</h2>
-        <nav>
-          <ul className="space-y-2">
-            <li>
-              <Button
-                variant="ghost"
-                className="w-full justify-start"
-                onClick={() => {
-                  onSelectView('current')
-                  setIsOpen(false)
-                }}
-              >
-                <Clock className="mr-2 h-4 w-4" />
-                Current Events
-              </Button>
-            </li>
-            <li>
-              <Button
-                variant="ghost"
-                className="w-full justify-start"
-                onClick={() => {
-                  onSelectView('past')
-                  setIsOpen(false)
-                }}
-              >
-                <Calendar className="mr-2 h-4 w-4" />
-                Past Events
-              </Button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </>
+    <Sidebar>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <GalleryVerticalEnd className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold">Docs</span>
+                  <span className="">v1.0.0</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <form>
+          <SidebarGroup className="py-0">
+            <SidebarGroupContent className="relative">
+              <Label htmlFor="search" className="sr-only">
+                Search
+              </Label>
+              <Input id="search" placeholder="Search the docs..." className="pl-8" />
+              <Search className="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 select-none opacity-50" />
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </form>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {navItems.map((item) => (
+                <SidebarMenuItem key={item.url}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url}>
+                    <Link href={item.url}>{item.title}</Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   )
 }
 

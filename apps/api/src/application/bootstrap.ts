@@ -44,8 +44,5 @@ export const bootstrap = () => {
     registerMockRoutes(app);
   }
 
-  // ルーターのマウント
-  registerEventRoutes(app);
-
   return app;
 };

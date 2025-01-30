@@ -1,40 +1,106 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Event } from '@/lib/data'
+"use client"
 
-type EventListProps = {
-  events: Event[]
+import { useState } from "react"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { CalendarDays, MapPin, Users } from "lucide-react"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+
+const ITEMS_PER_PAGE = 6
+
+type Event = {
+  id: number
   title: string
-  onSelectEvent: (event: Event) => void
-  selectedEventId?: string
+  description: string
+  date: string
+  location: string
+  attendees: number
 }
 
-export function EventList({ events, title, onSelectEvent, selectedEventId }: EventListProps) {
+export default function EventList({ initialEvents }: { initialEvents: Event[] }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil(initialEvents.length / ITEMS_PER_PAGE)
+
+  const currentEvents = initialEvents.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+
   return (
-    <Card className="bg-white h-full overflow-hidden flex flex-col">
-      <CardHeader className="flex-shrink-0">
-        <CardTitle>{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex-grow overflow-auto">
-        <ul className="space-y-4">
-          {events.map((event) => (
-            <li
-              key={event.id}
-              className={`flex items-center justify-between border-b border-gray-100 pb-4 last:border-b-0 last:pb-0 cursor-pointer transition-colors ${event.id === selectedEventId ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
-              onClick={() => onSelectEvent(event)}
-            >
-              <div>
-                <h3 className="font-semibold text-gray-900">{event.name}</h3>
-                <p className="text-sm text-gray-500">{event.date} - {event.location}</p>
+    <>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {currentEvents.map((event) => (
+          <Card key={event.id}>
+            <CardHeader>
+              <CardTitle>{event.title}</CardTitle>
+              <CardDescription>{event.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <CalendarDays className="h-4 w-4" />
+                <span>{event.date}</span>
               </div>
-              <Badge variant={event.status === 'ongoing' ? 'default' : 'secondary'}>
-                {event.status}
-              </Badge>
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-    </Card>
+              <div className="mt-2 flex items-center space-x-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>{event.location}</span>
+              </div>
+              <div className="mt-2 flex items-center space-x-2 text-sm text-muted-foreground">
+                <Users className="h-4 w-4" />
+                <span>{event.attendees} attendees</span>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button variant="outline" className="w-full">
+                Learn More
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+
+      <div className="my-8">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setCurrentPage((prev) => Math.max(prev - 1, 1))
+                }}
+              />
+            </PaginationItem>
+            {[...Array(totalPages)].map((_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  href="#"
+                  isActive={currentPage === i + 1}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setCurrentPage(i + 1)
+                  }}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
+    </>
   )
 }
 
