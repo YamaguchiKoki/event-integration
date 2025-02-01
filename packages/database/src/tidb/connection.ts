@@ -1,5 +1,5 @@
 import { connect } from "@tidbcloud/serverless";
-import { env } from "../../env.js";
+import { env } from "@workspace/configs/env.js";
 import { drizzle } from "drizzle-orm/singlestore";
 import { drizzle as TiDBdrizzle }  from 'drizzle-orm/tidb-serverless';
 

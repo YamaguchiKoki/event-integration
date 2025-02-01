@@ -2,8 +2,7 @@
 import { Event } from "../../domain/entities/event";
 import { rawEventToEntityEvent } from "../../domain/parser/event.js";
 import { IEventRepository, EventSearchParams } from "../../domain/repositories/IEventRepository";
-import { env } from "../../env.js";
-
+import { env } from "@workspace/configs/env.js";
 import { generateMockResponse } from "../../mock/event.js";
 
 export const useFetchEventsUseCase = (eventRepository: IEventRepository) => {

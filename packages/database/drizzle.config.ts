@@ -1,6 +1,6 @@
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
-import { env } from "./src/env";
+import { env } from "@workspace/configs/env.js";
 
 const getDatabaseConfig = () => {
   if (env.NODE_ENV === "production") {
@@ -24,8 +24,8 @@ const getDatabaseConfig = () => {
 
 export default defineConfig({
   dialect: "mysql",
-  schema: "./src/infrastructure/db/schema/*",
-  out: "./src/infrastructure/db/drizzle",
+  schema: "./src/tidb/schema/*",
+  out: "./src/tidb/migration",
   dbCredentials: getDatabaseConfig(),
   ...(env.NODE_ENV === "production" && {
     dbProvider: '@tidbcloud/serverless'

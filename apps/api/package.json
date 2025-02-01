@@ -8,12 +8,7 @@
     "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name hello",
     "deploy": "run-s build zip update",
     "biome:format": "biome format --write ./src",
-    "biome:fix": "biome check --debug --write ./src/**/*.ts",
-    "drizzle:generate": "NODE_ENV=local npx drizzle-kit generate",
-    "drizzle:migrate": "NODE_ENV=local npx drizzle-kit migrate",
-    "drizzle:push": "NODE_ENV=local npx drizzle-kit push",
-    "drizzle:drop": "NODE_ENV=local npx drizzle-kit drop",
-    "drizzle:studio": "NODE_ENV=local npx drizzle-kit studio"
+    "biome:fix": "biome check --debug --write ./src/**/*.ts"
   },
   "devDependencies": {
     "@hono/node-server": "^1.13.7",

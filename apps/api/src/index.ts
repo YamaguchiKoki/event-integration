@@ -1,9 +1,8 @@
 import { serve } from "@hono/node-server";
 import { handle } from "hono/aws-lambda";
 import { bootstrap } from "./application/bootstrap.js";
-import { env } from "./env.js";
 import { registerEventRoutes } from "./adapters/routes/eventRoutes.js";
-
+import { env } from "@workspace/configs/env.js";
 const app = bootstrap()
             .basePath('/api')
             .route('/events', registerEventRoutes());

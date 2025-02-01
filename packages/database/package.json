@@ -1,0 +1,31 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js --platform=node --target=node20",
+    "drizzle:generate": "NODE_ENV=local npx drizzle-kit generate",
+    "drizzle:migrate": "NODE_ENV=local npx drizzle-kit migrate",
+    "drizzle:push": "NODE_ENV=local npx drizzle-kit push",
+    "drizzle:drop": "NODE_ENV=local npx drizzle-kit drop",
+    "drizzle:studio": "NODE_ENV=local npx drizzle-kit studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20",
+    "drizzle-kit": "^0.30.2",
+    "mysql2": "^3.12.0"
+  },
+  "dependencies": {
+    "@tidbcloud/serverless": "^0.2.0",
+    "@workspace/configs": "workspace:^",
+    "axios": "^1.7.9",
+    "drizzle-orm": "^0.38.4",
+    "drizzle-zod": "^0.6.1",
+    "esbuild": "^0.24.2"
+  }
+}
