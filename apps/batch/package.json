@@ -1,0 +1,25 @@
+{
+  "name": "batch",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsx src/fetchDoorkeeper.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.147",
+    "@workspace/configs": "workspace:^",
+    "@workspace/contract": "workspace:^",
+    "aws-lambda": "^1.0.7",
+    "axios": "^1.7.9",
+    "database": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "tsx": "^4.7.1"
+  },
+  "type": "module"
+}
