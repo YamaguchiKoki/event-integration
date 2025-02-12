@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
-import { fetchEventRequestSchema, fetchEventResponseSchema } from '@workspace/contract';
 import { AppType } from '../../application/type.js';
+import { fetchEventRequestSchema, fetchEventResponseSchema } from '@workspace/contract';
 
 
 export const registerEventRoutes = () => {

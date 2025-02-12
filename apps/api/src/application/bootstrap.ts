@@ -3,7 +3,8 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { createContainer } from "./container/injection.js";
 import { AppType } from "./type.js";
-import { env } from "@workspace/configs/env.js";
+import { env } from "../env.js";
+
 export const bootstrap = () => {
   const app = new Hono<AppType>();
 
