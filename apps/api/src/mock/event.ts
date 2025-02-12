@@ -1,24 +1,18 @@
-import { ConnpassApiResponse, RawEvent } from "../infrastructure/repositories/eventRepository";
+import { ConnpassApiResponse, RawEvent } from "@workspace/contract";
 
-export const generateMockResponse = (params: {
-  keyword?: string;
-  prefecture: string;
-  ym: string;
-}): ConnpassApiResponse => {
-  const events: RawEvent[] = []; // 型を適宜修正する
 
-  const baseDate = new Date(params.ym);
+export const generateMockResponse = (): ConnpassApiResponse => {
+  const events: RawEvent[] = [];
+  const baseDate = new Date(); // baseDateを定義
 
   for (let i = 0; i < 5; i++) {
-    const eventDate = new Date(baseDate);
+    const eventDate = new Date();
     eventDate.setDate(baseDate.getDate() + i * 2); // 2日ごとにイベントを設定
 
     events.push({
       id: i + 1, // APIのレスポンスに合わせてidを設定
       event_id: i + 1,
-      title: params.keyword
-        ? `【${params.keyword}】勉強会 #${i + 1}`
-        : `${params.prefecture}エンジニアMeetup #${i + 1}`,
+      title: `エンジニアMeetup #${i + 1}`,
       catch: "株式会社ビープラウドが主催するWeb系技術討論の会", // 固定のキャッチコピー
       description: "今回は「Python プロフェッショナル　プログラミング」執筆プロジェクトの継続的ビルドについて、お話しして頂きます。",
       url: `https://bpstudy.connpass.com/event/${i + 1}/`, // URLを動的に設定
@@ -36,8 +30,8 @@ export const generateMockResponse = (params: {
         title: "BPStudy",
         url: "https://bpstudy.connpass.com/series/1/",
       },
-      address: `${params.prefecture}県XX市YY町${i + 1}-${i + 1}`, // 住所を動的に生成
-      place: `${params.prefecture}テックスペース`, // 場所を動的に設定
+      address: `東京都渋谷区代々木${i + 1}-${i + 1}`, // 住所を動的に生成
+      place: `テックスペース${i + 1}`, // 場所を動的に設定
       lat: "35.729402000000", // 仮の緯度
       lon: "139.718209000000", // 仮の経度
       owner_id: 8, // 所有者ID（仮の値）

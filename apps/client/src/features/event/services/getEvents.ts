@@ -6,12 +6,8 @@ import { client } from "@/lib/client";
  * @returns
  */
 export async function getEvents(): Promise<EventView[]> {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const dateString = `${year}${month}`;
 
-  const res = await client.api.events.$get({ query: { prefecture: 'hyogo', ym: dateString } });
+  const res = await client.api.events.$get();
   console.log(res);
   const events = await res.json();
 
@@ -28,14 +24,16 @@ export async function getEvents(): Promise<EventView[]> {
     return {
       eventId: parsedEvent.eventId,
       title: parsedEvent.title,
-      catch: parsedEvent.catch,
       description: parsedEvent.description,
       url: parsedEvent.url,
+      imageUrl: parsedEvent.imageUrl,
+      ownerUrl: parsedEvent.ownerUrl,
       startedAt: formatDate(parsedEvent.startedAt),
       endedAt: formatDate(parsedEvent.endedAt),
       address: parsedEvent.address,
       place: parsedEvent.place,
       accepted: parsedEvent.accepted,
+      eventSource: parsedEvent.eventSource,
     };
   });
 

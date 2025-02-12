@@ -7,16 +7,18 @@ export const fetchEventRequestSchema = z.object({
 });
 
 export const eventSchema = z.object({
-  eventId: z.number(),
-  title: z.string(),
-  catch: z.string(),
+  eventId: z.number().describe("イベントID"),
+  title: z.string().describe("イベント名"),
   description: z.string(),
   url: z.string(),
+  imageUrl: z.string(),
+  ownerUrl: z.string(),
   startedAt: z.string(),
   endedAt: z.string(),
   address: z.string(),
   place: z.string(),
   accepted: z.number(),
+  eventSource: z.enum(['connpass', 'doorkeeper']),
 });
 
 export const fetchEventResponseSchema = z.array(eventSchema);

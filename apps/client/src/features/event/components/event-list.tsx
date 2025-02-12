@@ -46,7 +46,7 @@ export default function EventList({ initialEvents }: { initialEvents: EventView[
               </div>
             </CardContent>
             <CardFooter>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full" onClick={() => window.open(event.url, '_blank')}>
                 Learn More
               </Button>
             </CardFooter>

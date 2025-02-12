@@ -7,16 +7,10 @@ import { fetchEventRequestSchema, fetchEventResponseSchema } from '@workspace/co
 export const registerEventRoutes = () => {
   const eventApp = new Hono<AppType>()
   .get('/',
-    zValidator('query', fetchEventRequestSchema, (result, c) => {
-      if (!result.success) {
-        console.log(result.error.issues)
-        return c.text('Bad Request', 400);
-      }
-    }),
     async (c) => {
-      const query = c.req.valid('query');
       const container = c.get('container');
-      const events = await container.get('fetchEvents')(query);
+      const events = await container.get('fetchEvents')();
+      console.log("hello", events);
 
       const parsed = fetchEventResponseSchema.safeParse(events);
       if (!parsed.success) {
